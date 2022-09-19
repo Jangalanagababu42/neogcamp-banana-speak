@@ -8,8 +8,17 @@ function getTranslationURL(input) {
   return serverURL + "?" + "text=" + input;
 }
 
+function buttonDisable(){
+  
+    transalte.disabled=true;
+    transalte.style.backgroundColor="#F8F0E3";
+    transalte.style.color="#F8F0E3";
+    
+  
+}
 function clickHandler() {
   var Text = textInput.value;
+  if(Text!==""){
   fetch(getTranslationURL(Text))
     .then((response) => response.json())
     .then((json) => {
@@ -17,8 +26,12 @@ function clickHandler() {
       var translatedText = json.contents.translated;
       Output.innerText = translatedText;
     })
-    .catch(errorHandler);
-}
+    .catch(errorHandler);}
+
+    else{
+      buttonDisable();
+    }
+  }
 
 function errorHandler(error) {
   console.log("Error Occured", error);
